@@ -1,0 +1,316 @@
+.packing-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.packing-left-section {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.packing-right-section {
+  width: 55%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.packing-step-title, .packing-options-title {
+  margin-bottom: 10px;
+}
+
+.packing-step-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.packing-options-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  margin: 0px;
+  padding: 10px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent; /* For Firefox */
+}
+
+/* For Webkit browsers like Chrome/Safari */
+.packing-options-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.packing-options-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.packing-options-grid::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.packing-option-card {
+  flex: 0 0 auto;
+  width: 250px; /* Fixed width for each card */
+  min-height: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: white;
+}
+
+.packing-option-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.packing-option-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.packing-option-image-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  min-height: 0;
+}
+
+.packing-option-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.packing-option-image.horizontal,
+.packing-option-image.vertical {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 180px;
+}
+
+.packing-option-info {
+  margin-top: auto;
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.packing-option-text {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 40%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.fabric-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  min-height: 100px;
+  margin-bottom: 20px;
+  border: 2px dashed #ccc;
+  padding: 10px;
+}
+
+.draggable-fabric {
+  cursor: move;
+  margin: 0 2px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.draggable-fabric:hover {
+  transform: scale(1.05);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-buttons button:hover {
+  background-color: #45a049;
+}
+
+.modal-buttons button:last-child {
+  background-color: #f44336;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #d32f2f;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-container select,
+.filter-container input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.sort-container {
+  margin-bottom: 10px;
+}
+
+.sort-container select {
+  padding: 5px;
+}
+
+.instructions-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.instruction-step {
+  border: 1px solid #ccc;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.instruction-step h3 {
+  text-align: center;
+}
+
+.fabric-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fabric-item {
+  text-align: center;
+}
+
+.fabric-item img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.strip-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.strip-before-crop img,
+.strip-after-crop img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.strip-section img,
+.final-result img {
+  max-width: 400px;
+}
+
+.trimming-step {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.trimming-records {
+  margin: 1rem 0;
+}
+
+.trimming-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.trimming-record {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.trimming-record img {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: contain;
+  border: 1px solid #ccc;
+}
+
+.trimming-record p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.original-fabric,
+.trimmed-fabric {
+  text-align: center;
+}
+

@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #bad1ff;
+  min-height: 30pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.assignable-container {
+  background-color: #d9e4fd;
+}
+
+.annotation-container, .assignable-container {
+  display: flex;
+  justify-content: space-between;  /* optional, to add space between the items */
+}
+
+.PolyAnno, .ScrapAnno, Assignable {
+  /* flex: 1;  Adjust the width of the components as needed */
+  margin: 0 10px; /* Optional, to add some spacing between the components */
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  width: 80%;
+}

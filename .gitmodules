@@ -1,0 +1,6 @@
+[submodule "baselines/guillotine_cutting"]
+	path = baselines/guillotine_cutting
+	url = https://github.com/gcibeira/guillotine-cutting
+[submodule "baselines/strip_packing"]
+	path = baselines/strip_packing
+	url = https://github.com/Mxbonn/strip-packing

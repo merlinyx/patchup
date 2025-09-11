@@ -1,0 +1,128 @@
+.bin-assignment-container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  margin-left: 5px;
+}
+
+.available-fabrics-section {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.bins-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+  margin: 10px;
+  margin-right: 10px;
+  overflow-y: auto;
+}
+
+.bin {
+  min-height: 100px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.bin-fixed {
+  border: 2px solid #1976d2;
+  background-color: #e3f2fd;
+  position: relative;
+}
+
+.bin-fixed::after {
+  content: 'Fixed bin - will not change during grouping';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 12px;
+  color: #1976d2;
+}
+
+.bin-selected {
+  border: 2px solid #4caf50;
+  background-color: #e8f5e9;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+
+.bin-hover {
+  border-color: #2196f3;
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.bin-fabric {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.bin-fabric:hover {
+  transform: scale(1.05);
+}
+
+#n-fabric-bins-field {
+  max-width: 120px;
+}
+
+#backend-message {
+  margin: 10px;
+}
+
+.bin .MuiMobileStepper-root {
+  background: transparent;
+  width: 100%;
+}
+
+.bin .MuiMobileStepper-dots {
+  margin: 0 16px;
+}
+
+/* Draggable bin styles */
+.draggable-bin {
+  cursor: move;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+}
+
+.draggable-bin.dragging {
+  opacity: 0.5;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Collapsed bin styles */
+.bin-collapsed {
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  min-height: 20px;
+}
+
+.bin-collapsed.bin-fixed {
+  background-color: rgba(25, 118, 210, 0.08);
+  border-left: 3px solid #1976d2;
+}
+
+.bin-collapsed.bin-selected {
+  background-color: rgba(76, 175, 80, 0.08);
+  border-left: 3px solid #4caf50;
+}
+
+/* Make bin headers more distinct when collapsed */
+.bin-container:has(.bin-collapsed) .bin-header {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Add visual indication when hovering over collapse toggle */
+.bin-header .MuiIconButton-root:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}

@@ -1,0 +1,14 @@
+.toolbar-wrapper {
+  display: flex;
+  margin-left: 10px;
+}
+.points-wrapper {
+  display: flex;
+  align-items: center;
+  margin-block: 5px;
+  padding: 5px;
+  overflow-y: auto;
+}
+.points-wrapper > div {
+  background-color: aliceblue;
+}
