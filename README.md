@@ -3,7 +3,7 @@
 We propose PatchUp, an interactive design tool for upcycling fabric scraps by packing them in an aesthetic way guided by traditional quilt block designs. The newly made fabrics from the scraps can be used for other crafting projects.
 
 UI Walkthrough Video:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RmI8TaRvA5Q?si=7sK3kPKaGF__vpwm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![UI Walkthrough Video](https://img.youtube.com/vi/RmI8TaRvA5Q/0.jpg)](https://www.youtube.com/watch?v=RmI8TaRvA5Q)
 
 Implementation accompanying
 ```bibtex
