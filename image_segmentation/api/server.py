@@ -1,15 +1,10 @@
-from flask import Flask, request, jsonify, send_from_directory, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-# from io import BytesIO
-# from PIL import Image, ImageDraw
-from werkzeug.utils import secure_filename
 import os
 import numpy as np
 import cv2
 import json
 
-from meanshift import meanshift
-from superpixel import superpixel
 from fabrics import PatternPiece, FabricScrap
 from polygon import Points
 
@@ -391,79 +386,5 @@ def save_polygon_as_svg():
         f.write('</svg>')
     return jsonify({"svg_path": svg_path, "message": breadcrumb_message})
 
-########################### BELOW ARE DEPRECATED ###########################
-### Previous filtering calls
-@app.route('/meanshift_image', methods=['POST'])
-def meanshift_image():
-    file = check_file(request)
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-
-        spatial_radius = int(request.form['spatial_radius']) if 'spatial_radius' in request.form else 21
-        color_radius = int(request.form['color_radius']) if 'color_radius' in request.form else 51
-        output_segmented = os.path.join(app.config['RESULT_FOLDER'], 'segmented_' + filename)
-        output_filtered = os.path.join(app.config['RESULT_FOLDER'], 'filtered_' + filename)
-        if not os.path.exists(app.config['RESULT_FOLDER']):
-            os.makedirs(app.config['RESULT_FOLDER'])
-
-        meanshift(file_path, spatial_radius, color_radius, output_segmented, output_filtered)
-        # segmented_url = request.url_root + 'results/' + 'segmented_' + filename
-        # segmented_url = url_for(app.config['RESULT_FOLDER'], filename='segmented_' + filename)
-        filtered_url = request.url_root + 'results/' + 'filtered_' + filename
-        # filtered_url = url_for(app.config['RESULT_FOLDER'], filename='filtered_' + filename)
-        return jsonify({
-            'message': 'Mean shift applied successfully!',
-            # 'segmented_image_url': segmented_url,
-            'filtered_image_url': filtered_url
-        }), 200
-
-    return jsonify({'error': 'Invalid file type'}), 400
-
-@app.route('/superpixel', methods=['POST'])
-def superpixel():
-    print(request.files)
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image part'}), 400
-
-    file = request.files['image']
-    output_segmented = os.path.join(app.config['PUBLIC_FOLDER'], app.config['SEG_FOLDER'], f"{file.split('.')[0]}_slic_segmented.png")
-    if not os.path.exists(output_segmented):
-        segmented_image = superpixel(os.path.join(app.config['PUBLIC_FOLDER'], file))
-        segmented_image.save(output_segmented)
-    return send_file(output_segmented, mimetype='image/png')
-
-### Previous file uploading methods
-@app.route('/results/<path:filename>')
-def results(filename):
-    return send_from_directory(app.config['RESULT_FOLDER'], filename)
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
-
-def check_file(request):
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
-    return file
-
-@app.route('/upload_file', methods=['POST'])
-def upload_file():
-    file = check_file(request)
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        if not os.path.exists(app.config['UPLOAD_FOLDER']):
-            os.makedirs(app.config['UPLOAD_FOLDER'])
-        file.save(file_path)
-        # You can now process the image file as needed
-        return jsonify({'message': 'File uploaded successfully!'}), 200
-
-    return jsonify({'error': 'Invalid file type'}), 400
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
