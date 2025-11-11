@@ -1,5 +1,5 @@
 import numpy as np
-from scripts.utils.binning import color_distance
+from src.utils.binning import color_distance
 
 class BinFilter:
     def __init__(self, filter_parameters):

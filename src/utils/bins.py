@@ -1,11 +1,11 @@
 import colorsys
 import numpy as np
 import os
-from scripts.utils.binning import *
-from scripts.utils.config import PackingOption
-from scripts.utils.filters import *
-from scripts.utils.plot import base64_to_pil_image, pil_image_to_base64
-from scripts.utils.load_images import open_image
+from src.utils.binning import *
+from src.utils.config import PackingOption
+from src.utils.filters import *
+from src.utils.plot import base64_to_pil_image, pil_image_to_base64
+from src.utils.load_images import open_image
 from gurobipy import *
 import copy
 
@@ -102,7 +102,6 @@ class Fabric:
         return {'id': self.id, 'image': self.image_path}
 
     def update_after_trimming(self, trimmed_image, sa=0, high_res_image_size=None):
-        # return # hack for result generation for p3 & p4's task2
         # Update image
         self.image = trimmed_image
         self.color = np.mean(np.mean(np.array(self.image)[:, :, :3], axis=0), axis=0)
@@ -856,8 +855,6 @@ class UserFabricBins(FabricBins):
         else:
             self.create_bins(public_folder, bins, sa)
         self.bins_merged = False
-        # HACK: this is a hack for fabrics that are completely removed from the bin
-        # self.removed_fabrics = {}
 
     def create_bin_from_fabrics(self, fabric_in_bin, name=None):
         if len(fabric_in_bin) == 0:
@@ -952,9 +949,6 @@ class UserFabricBins(FabricBins):
                 print(f"Edge subset: {option.edge_subset}")
                 print(f"Fabric map: {fabric_map}")
                 raise e
-                # HACK: this is a hack for fabrics that are completely removed from the bin
-                # mapped_fabric = self.removed_fabrics[edge.p.id]
-                # print("HACKING BY REUSING USED FABRICS")
             if edge.is_e1:
                 mapped_edges.append(mapped_fabric.e1)
             else:
@@ -999,11 +993,6 @@ class UserFabricBins(FabricBins):
         """
         # Get the set of fabric IDs that were used
         used_fabric_ids = {edge.p.id for edge in used_option.edge_subset}
-        # HACK: this is a hack for fabrics that are completely removed from the bin
-        # current_fabric_map = self.to_fabric_map()
-        # for removed_fabric_id in used_fabric_ids:
-        #     if removed_fabric_id in current_fabric_map:
-        #         self.removed_fabrics[removed_fabric_id] = current_fabric_map[removed_fabric_id]
 
         # Create a map of trimming records by fabric ID
         trimming_map = {}
@@ -1078,14 +1067,6 @@ class UserFabricBins(FabricBins):
             fabric_in_bin = []
             for f in bin['fabrics']:
                 fabric_id = f['id']
-                # HACK: this is a hack for fabrics that are completely removed from the bin
-                # if fabric_id not in current_fabrics:
-                #     print('the new bins should be existing fabrics shifted around, not introducing any new fabrics')
-                #     print(f)
-                #     if fabric_id in self.removed_fabrics:
-                #         print('HACKING BY REUSING USED FABRICS')
-                #         fabric_in_bin.append(self.removed_fabrics[fabric_id])
-                #     continue
                 assert fabric_id in current_fabrics, 'the new bins should be existing fabrics shifted around, not introducing any new fabrics'
                 fabric_in_bin.append(current_fabrics[fabric_id])
             self.create_bin_from_fabrics(fabric_in_bin, name=bin['name'])

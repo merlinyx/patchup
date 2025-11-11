@@ -1,8 +1,8 @@
-from scripts.utils.pack import *
-from scripts.utils.bins import Fabric, FabricBins, ColorFabricBins
-from scripts.utils.config import *
-from scripts.utils.filters import *
-from scripts.utils.plot import pil_image_to_base64
+from src.utils.pack import *
+from src.utils.bins import Fabric, FabricBins, ColorFabricBins
+from src.utils.config import *
+from src.utils.filters import *
+from src.utils.plot import pil_image_to_base64
 from time import time
 import dill as pickle
 

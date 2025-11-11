@@ -4,10 +4,10 @@ import dill as pickle
 import argparse
 import threading
 
-from scripts.utils.bin_pack_api_rail_fence import pack_with_option, option_to_strip_image
-from scripts.utils.load_images import load_fabrics_for_binning
-from scripts.utils.bins import UserFabricBins
-from scripts.utils.pack import update_rail_fence_packed_fabric_high_res_size
+from src.utils.bin_pack_api_rail_fence import pack_with_option, option_to_strip_image
+from src.utils.load_images import load_fabrics_for_binning
+from src.utils.bins import UserFabricBins
+from src.utils.pack import update_rail_fence_packed_fabric_high_res_size
 
 # Add file operation lock
 file_operation_lock = threading.Lock()
@@ -31,10 +31,7 @@ def reconstruct_high_res(session_data, fabric_folder, output_dir, public_dir='pu
             strategy_per_iter = session_data['strategy_per_iter']
             config.strategy = strategy_per_iter[0]
         else:
-            # HACK: for before keeping track of strategy per iter
             strategy_per_iter = {0: config.strategy}
-        # HACK: for p2 task2
-        # strategy_per_iter = {0: 'rail-fence', 11: 'log-cabin'}
 
         wasted = 0
         used = 0
@@ -49,8 +46,6 @@ def reconstruct_high_res(session_data, fabric_folder, output_dir, public_dir='pu
         packed_fabric = None
         current_fabrics = None
         fabrics = bins.to_id_fabric_map()
-        # HACK: for non-default initial fabric, look up the fabric id
-        # print(bins.to_fabric_map())
 
         if config.strategy == 'rail-fence':
             fabric_imgs = list(fabrics.values())
@@ -74,16 +69,6 @@ def reconstruct_high_res(session_data, fabric_folder, output_dir, public_dir='pu
                 removed, high_res_image_size = bins.remove_fabric(sorted_args[0])
                 packed_fabric = sorted_fabrics[0]
                 current_fabrics = sorted_fabrics[1:]
-            # HACK: for tote bag task 2 - test
-            # centerpiece = 24
-            # packed_fabric = fabrics[centerpiece]
-            # current_fabrics = [fabrics[f] for f in fabrics if f != centerpiece]
-            # removed, high_res_image_size = bins.remove_fabric(centerpiece)
-            # HACK: for tote bag task 2 - p7
-            # centerpiece = 16
-            # packed_fabric = fabrics[centerpiece]
-            # current_fabrics = [fabrics[f] for f in fabrics if f != centerpiece]
-            # removed, high_res_image_size = bins.remove_fabric(centerpiece)
             config.packed_fabric_high_res_size = high_res_image_size
             used = packed_fabric.size[0] * packed_fabric.size[1]
             if not removed:
@@ -102,18 +87,6 @@ def reconstruct_high_res(session_data, fabric_folder, output_dir, public_dir='pu
                 bins.update_bins(binning_bins)
             try:
                 new_option = bins.create_from_option(option)
-                # HACK: for p9 task2
-                # if iter == 20:
-                #     print(f"New option: {new_option}")
-                #     print("current fabrics:")
-                #     for fabric_id, fabric in bins.to_fabric_map().items():
-                #         print(fabric_id)
-                #         print(fabric.image.size)
-                # HACK: for p2 task2
-                # if iter == len(chosen_options) - 1:
-                #     curr_strip = option_to_strip_image(packed_fabric, sorted_fabrics, new_option, iter, bins=bins, config=config,
-                #           should_save=False, session_id=None, save_folder=None, pickle_folder=None, use_high_res=True)
-                #     curr_strip.save(os.path.join(output_dir, f'strip_{iter}.png'), format='PNG', quality=100)
                 packed_fabric, current_fabrics, bins, iter, wasted, used, instruction = pack_with_option(
                     packed_fabric=packed_fabric,
                     sorted_fabrics=current_fabrics,

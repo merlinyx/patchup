@@ -1,8 +1,8 @@
-from scripts.utils.pack import *
-from scripts.utils.bins import Fabric, FabricBins, ColorFabricBins
-from scripts.utils.config import *
-from scripts.utils.filters import *
-from scripts.utils.plot import pil_image_to_base64
+from src.utils.pack import *
+from src.utils.bins import Fabric, FabricBins, ColorFabricBins
+from src.utils.config import *
+from src.utils.filters import *
+from src.utils.plot import pil_image_to_base64
 import dill as pickle
 import threading
 
@@ -190,15 +190,6 @@ def option_to_strip(packed_fabric, sorted_fabrics, option, iter, bins, config, o
     total_length = 0
     for op_index, (edge, other_dim) in enumerate(zip(option.edge_subset, other_dims)):
         fabric_image = sorted_fabrics[edge.p.id] if bins is None else fabric_mapping[edge.p.id]
-        # HACK: this is a hack for fabrics that are completely removed from the bin
-        # try:
-        #     fabric_image = sorted_fabrics[edge.p.id] if bins is None else fabric_mapping[edge.p.id]
-        # except Exception as e:
-        #     print(f"Error getting fabric image for edge {edge.p.id}: {e}")
-        #     print(f"Edge subset: {option.edge_subset}")
-        #     print(f"Fabric mapping: {fabric_mapping}")
-        #     if edge.p.image is not None:
-        #         fabric_image = edge.p.image
         w, h = fabric_image.size
         fabric_detail = {
             'order': op_index + 1,

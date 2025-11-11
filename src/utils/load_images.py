@@ -3,8 +3,8 @@ import numpy as np
 import os
 import json
 
-from scripts.utils.test_set import generate_bordered_test_fabric
-from scripts.utils.plot import base64_to_pil_image
+from src.utils.test_set import generate_bordered_test_fabric
+from src.utils.plot import base64_to_pil_image
 
 def open_image(image_path):
     if image_path is None:

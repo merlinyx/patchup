@@ -1294,11 +1294,12 @@ const BinningPage = () => {
                     label="Fabric Folder"
                     onChange={handleFabricFolderChange}
                   >
-                    <ListSubheader>Fabric Sets</ListSubheader>
+                    <ListSubheader>User Study Sets</ListSubheader>
                     <MenuItem value="/studyset_resized/">Etsy Cotton</MenuItem>
                     <MenuItem value="/linen_pp_resized/">Etsy Linen</MenuItem>
-                    <MenuItem value="/solids_resized/">Etsy Solids</MenuItem>
-                    <MenuItem value="/etsybag_pp_resized/">Etsy Bag (Mixed)</MenuItem>
+                    <ListSubheader>Fabric Sets</ListSubheader>
+                    <MenuItem value="/fabscrap_pp_resized/">FABSCRAP Bag</MenuItem>
+                    <MenuItem value="/etsybag_pp_resized/">Etsy Bag</MenuItem>
                     <MenuItem value="/textured_resized/">Textured</MenuItem>
                     <MenuItem value="/adobe_seamless_resized/">Adobe+Tiling</MenuItem>
                     <ListSubheader>Generated Sets</ListSubheader>
@@ -1310,11 +1311,6 @@ const BinningPage = () => {
                     <MenuItem value="/similar_sized/">Similar Sized</MenuItem>
                     <MenuItem value="/square_heavy/">Square Heavy</MenuItem>
                     <MenuItem value="/sequential/">Sequential</MenuItem>
-                    <MenuItem value="/ui_test1/">UI Test 1</MenuItem>
-                    <MenuItem value="/ui_test2/">UI Test 2</MenuItem>
-                    <ListSubheader>User Study Sets</ListSubheader>
-                    <MenuItem value="/audrey_pp_resized/">From Audrey</MenuItem>
-                    <MenuItem value="/oren_filtered_resized/">From Oren</MenuItem>
                   </Select>
                 </FormControl>
               </span>

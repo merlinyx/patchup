@@ -18,17 +18,16 @@ file_operation_lock = threading.Lock()
 WKDIR = '../../'
 sys.path.insert(0, WKDIR)
 
-# Import your existing utilities
-from scripts.utils.bin_pack_api_rail_fence import next_packing_options, pack_with_option, option_to_strip
-from scripts.reconstruct_high_res import reconstruct_high_res
-from scripts.utils.config import *
-from scripts.utils.filters import *
-from scripts.utils.pack import update_rail_fence_packed_fabric_high_res_size
-from scripts.utils.plot import *
-from scripts.utils.binning import *
-from scripts.utils.load_images import load_fabrics_for_binning
-from scripts.utils.bins import UserFabricBins
-from scripts.utils.tests import total_area
+from src.utils.bin_pack_api_rail_fence import next_packing_options, pack_with_option, option_to_strip
+from src.results.reconstruct_high_res import reconstruct_high_res
+from src.utils.config import *
+from src.utils.filters import *
+from src.utils.pack import update_rail_fence_packed_fabric_high_res_size
+from src.utils.plot import *
+from src.utils.binning import *
+from src.utils.load_images import load_fabrics_for_binning
+from src.utils.bins import UserFabricBins
+from src.utils.tests import total_area
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -641,19 +640,6 @@ def load_bins():
         with open(pickle_file_path, 'rb') as f:
             bins = pickle.load(f)
         session_data['bins'] = UserFabricBins(PUBLIC_DIR, bins, sa=session_data['config'].sa)
-        # HACK: for knowing task 2 tote bag design's bins
-        # with open(pickle_file_path, 'rb') as f:
-        #     stored_session = pickle.load(f)
-        # bins_per_iter = stored_session['bins_per_iter']
-        # if 'fabrics' not in bins_per_iter[0]:
-        #     bins_per_iter = [{
-        #         'id': i,
-        #         'name': f'Bin {i + 1}',
-        #         'fabrics': bins_per_iter[0][i]
-        #     } for i in range(len(bins_per_iter[0]))]
-        # else:
-        #     bins_per_iter = bins_per_iter[0]
-        # session_data['bins'] = UserFabricBins(PUBLIC_DIR, bins_per_iter, sa=session_data['config'].sa)
         return jsonify({'bins': bins, 'message': 'User-defined bins loaded successfully!'})
 
 @app.route('/api/load_bin_options', methods=['POST']) 

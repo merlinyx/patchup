@@ -1,6 +1,6 @@
-from scripts.utils.test_set import generate_bordered_test_fabric, generate_palette_colors
-from scripts.utils.bin_pack_api import bin_pack, bin_pack_rail_fence
-from scripts.utils.config import PackingConfig
+from src.utils.test_set import generate_bordered_test_fabric, generate_palette_colors
+from src.utils.bin_pack_api import bin_pack, bin_pack_rail_fence
+from src.utils.config import PackingConfig
 
 def print_waste_use(wasted_material, used_material, config=PackingConfig()):
     print(f"Total wasted fabric area: {wasted_material / config.dpi ** 2:.3f} sq in")

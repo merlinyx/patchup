@@ -1,7 +1,7 @@
-from scripts.utils.gif import *
-from scripts.utils.image_shape import *
-from scripts.utils.load_images import *
-from scripts.utils.plot import *
+from src.utils.gif import *
+from src.utils.image_shape import *
+from src.utils.load_images import *
+from src.utils.plot import *
 import sys
 
 #####################################################################
