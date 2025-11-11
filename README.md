@@ -33,6 +33,10 @@ To cite this work, please use the BibTeX entry above.
 
 `pip install colormath dill flask flask-cors gurobipy matplotlib numpy opencv-python pillow rectpack scikit-image scikit-learn seaborn` (if you run into additional packages missing from here please submit an issue and let me know!)
 
+### Data Download
+
+Please download the additional fabric data from the Google Drive [link](https://drive.google.com/file/d/16om-5sy1PsLroW6Lb9H_VzWNCMgdTtts/view?usp=sharing) and unzip under `fabric_data`.
+
 ### Gurobi Setup
 
 `export GRB_LICENSE_FILE=<path to gurobi.lic>`
@@ -51,6 +55,10 @@ You need a Gurobi license to use the Gurobi solver and for academic purposes you
 `npm run start-api`
 
 `npm run start`
+
+- image_segmentation: manual extraction of fabric images, or use the linked [netlify app](https://patchup-fabric-segmenter.netlify.app/) that uses SAM-based segmentation that's easier to work with. `fabric_data/example_scraps` shows an example of preprocessing done with the zip downloaded from the netlify app. The [repo](https://github.com/merlinyx/fabric_segmenter) here contains example photos under `public/images`. The preprocessing script is under `src/imgseg/compute_inner_images.ipynb`.
+
+- ui: the main ui for PatchUp. See the above video walkthrough for how to use it or refer to the paper.
 
 ### ngrok Setup
 
